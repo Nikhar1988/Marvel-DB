@@ -1,24 +1,53 @@
-class MarvelService {
-    getResourse = async (url:string ) => {
-        let res = await fetch(`${url}${process.env.REACT_APP_API_KEY_PUBLIC}`);
+import { Comic } from '../components/ComicsList/ComicsList.props';
+import { Char } from '../components/RandomChar/RandomChar.types';
+import { useHttp } from '../hooks/http.hook';
+import { CharItemData } from './types/character';
+import { ComicItemData } from './types/comics';
 
-        if(!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
+const useMarvelService =() => {
+   const {loading, error, request, clearError} = useHttp();
 
-        return await res.json();
+    const getAllCharacters = async (offset:number) => {
+        const responce = await request(`${process.env.REACT_APP_GET_ALL_CHARACTERS}${offset}&${process.env.REACT_APP_API_KEY_PUBLIC}`)
+        return responce.data.results.map(_transformCharacter);
     }
 
-    getAllCharacters = () => {
-        return this.getResourse(`${process.env.REACT_APP_GET_ALL_CHARACTERS}`)
+    const  getCharacter = async (id:number) => {
+        const responce =  await request(`${process.env.REACT_APP_GET_ONE_CHARACTER}${id}?${process.env.REACT_APP_API_KEY_PUBLIC}`);       
+        return _transformCharacter(responce.data.results[0]);
     }
 
-    getCharacter =(id:number) => {
-        console.log(`${process.env.REACT_APP_GET_ONE_CHARACTER}${id}?`)
-        return this.getResourse(`${process.env.REACT_APP_GET_ONE_CHARACTER}${id}?`)
+    const _transformCharacter = (character: CharItemData ):Char => {
+            const {id, name, description, thumbnail:{path, extension}, urls, comics } = character;
+            return {
+                id,
+                name,
+                description,
+                thumbnail: `${path}.${extension}`,
+                homepage: urls[0].url,
+                wiki: urls[1].url,
+                comics: comics.items
+            }   
+    }  
+
+    const getAllComics = async (offset:number) => {
+        const responce = await request(`${process.env.REACT_APP_GET_ALL_COMICS}${offset}&${process.env.REACT_APP_API_KEY_PUBLIC}`)
+        return responce.data.results.map(_transformComic);
     }
 
+    const _transformComic = (comic: ComicItemData ): Comic => {
+        const {id, title, prices:[{price}], thumbnail:{path, extension} } = comic;
+        return {
+            id,
+            title,
+            price,
+            thumbnail: `${path}.${extension}`,
+        }   
 }
 
 
-export default MarvelService;
+
+     return {loading, error, clearError, getCharacter, getAllCharacters, getAllComics}
+}
+
+export default useMarvelService;
