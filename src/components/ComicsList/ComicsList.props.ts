@@ -1,4 +1,3 @@
-import { Languages } from './../../../../../Aviobilety/Flights/src/types/data';
 export interface Comic {
     id: number,
     title: string,
