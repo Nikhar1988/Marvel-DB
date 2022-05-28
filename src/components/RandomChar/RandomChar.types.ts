@@ -1,6 +1,4 @@
 import { ComicsItem } from '../../services/types/character';
-
-
 export interface  Char  {
         id: number,
         name: string,

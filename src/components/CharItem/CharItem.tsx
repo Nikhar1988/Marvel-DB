@@ -1,6 +1,8 @@
-import cn from 'classnames'
-import {FC } from 'react'
-import { CharItemProps } from './CharItem.props'
+import cn from 'classnames';
+import {FC } from 'react';
+
+import { CharItemProps } from './CharItem.props';
+
 import './CharItem.scss';
 import CSS from 'csstype';
 
@@ -14,16 +16,16 @@ const CharItem:FC<CharItemProps> = ({name, src, selected, charId, imageNotFound,
 
   return (
     <li 
-        className={cn('char__item', {
-            'char__item_selected':selected 
-        })}
-        {...props}
-        ref={liRef}
+      className={cn('char__item', {
+        'char__item_selected':selected, 
+      })}
+      {...props}
+      ref={liRef}
     >
-        <img src={src} alt={name} style={imgStyle} />
-        <div className="char__name">{name}</div>
+      <img src={src} alt={name} style={imgStyle} />
+      <div className="char__name">{name}</div>
     </li>
-  )
-}
+  );
+};
 
 export default CharItem;

@@ -1,81 +1,81 @@
 
 
-    export interface Url {
+export interface Url {
         type: string;
         url: string;
     }
 
-    export interface Series {
+export interface Series {
         resourceURI: string;
         name: string;
     }
 
-    export interface Variant {
+export interface Variant {
         resourceURI: string;
         name: string;
     }
 
-    export interface Date {
+export interface Date {
         type: string;
         date: Date;
     }
 
-    export interface Price {
+export interface Price {
         type: string;
         price: number;
     }
 
-    export interface Thumbnail {
+export interface Thumbnail {
         path: string;
         extension: string;
     }
 
-    export interface Image {
+export interface Image {
         path: string;
         extension: string;
     }
 
-    export interface Item {
+export interface Item {
         resourceURI: string;
         name: string;
         role: string;
     }
 
-    export interface Creators {
+export interface Creators {
         available: number;
         collectionURI: string;
         items: Item[];
         returned: number;
     }
 
-    export interface Characters {
+export interface Characters {
         available: number;
         collectionURI: string;
         items: any[];
         returned: number;
     }
 
-    export interface Item2 {
+export interface Item2 {
         resourceURI: string;
         name: string;
         type: string;
     }
 
-    export interface Stories {
+export interface Stories {
         available: number;
         collectionURI: string;
         items: Item2[];
         returned: number;
     }
 
-    export interface Events {
+export interface Events {
         available: number;
         collectionURI: string;
         items: any[];
         returned: number;
     }
 
-    export interface ComicItemData {
+export interface ComicItemData {
         id: number;
         digitalId: number;
         title: string;
@@ -107,7 +107,7 @@
         events: Events;
     }
 
-    export interface Data {
+export interface Data {
         offset: number;
         limit: number;
         total: number;
@@ -115,7 +115,7 @@
         results: ComicItemData[];
     }
 
-    export interface RootObject {
+export interface RootObject {
         code: number;
         status: string;
         copyright: string;

@@ -1,4 +1,4 @@
-import { Char } from '../RandomChar/RandomChar.types'
+import { Char } from '../RandomChar/RandomChar.types';
 
 export interface CharInfoProps {
     charId: number  
