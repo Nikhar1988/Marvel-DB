@@ -3,8 +3,8 @@
 [DEMO](https://chusovitin-marvel-app.herokuapp.com/)
 
 ## Технологии ##
--TypeScript
 - React
+- TypeScript
 - (react-create-app, react-helmet, react-router-dom, react-transition-group)
 - Formik
 - Bootstrap
