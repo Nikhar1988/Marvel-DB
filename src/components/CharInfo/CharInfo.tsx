@@ -2,7 +2,6 @@ import './CharInfo.scss';
 import { FC, useEffect, useState } from 'react';
 import { CharInfoProps, ViewProps } from './CharInfo.props';
 import useMarvelService from '../../services/MarvelService';
-
 import CSS from 'csstype';
 import { Char } from '../RandomChar/RandomChar.types';
 import Spinner from '../Spinner/Spinner';
@@ -13,22 +12,16 @@ import ButtonLink from '../ButtonLink/ButtonLink';
 
 const CharInfo:FC<CharInfoProps> =({charId}) => {
     
-    const [char, setChar] = useState<Char>({
-        id: 0,
-        name: '',
-        description: '',
-        thumbnail: '',
-        homepage: '',
-        wiki: '',
-        comics: []
-    });
+    const [char, setChar] = useState<Char>({} as Char);
     
     const {error, loading, getCharacter, clearError} = useMarvelService();
  
     useEffect(()=> {
+        console.log(charId)
         if(charId === 0) {
             return;
         }
+         
         updateChar(charId)
     },[charId])
  
@@ -42,7 +35,7 @@ const CharInfo:FC<CharInfoProps> =({charId}) => {
              .then(onCharLoaded)             
      }
 
-     const comicsLoader = (arr:Array<ComicsItem>) => {
+     const comicsLoader = (arr:Array<ComicsItem> = []) => {
          const shortArr = arr.slice(10)
          const items = shortArr.map((item,i) => {
             return <li 
@@ -59,7 +52,7 @@ const CharInfo:FC<CharInfoProps> =({charId}) => {
         
 
         const viewContent = loading ? <Spinner/> : 
-        error ? <Error/> : char.id === 0 ? <Skeleton/> : 
+        error ? <Error/> : charId === 0 ? <Skeleton/> : 
         <View char={char} comicsList={viewComics}/>;
 
         

@@ -85,8 +85,8 @@ const CharList:FC<CharListProps>=({updateIdCard, idChar})=> {
             <div className="char__list">
                 {viewContent}               
                 <Button 
-                    onClick={()=> onRequest(offset,false)}
-                    onKeyDown={(event) => {
+                    onClick={()=> onRequest(offset, false)}
+                    onKeyDown ={(event) => {
                         if(event.key === 'Enter' || event.key === 'Space') {
                            event.preventDefault(); 
                             focusFirstTI()     

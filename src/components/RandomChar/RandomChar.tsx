@@ -10,15 +10,7 @@ import { useEffect, useState } from 'react';
 
 const RandomChar = () => {
     
-    const [char, setChar] = useState<Char>({
-        id: 0,
-        name: '',
-        description: '',
-        thumbnail: '',
-        homepage: '',
-        wiki: '',
-        comics: []
-    });
+    const [char, setChar] = useState<Char>({} as Char);
     
     const {loading, error, getCharacter, clearError} = useMarvelService();
 
@@ -45,8 +37,8 @@ const RandomChar = () => {
         
     }
         
-    const {name, description, homepage, thumbnail, wiki} = char;
-        const viewDescription = description === '' ? 'not data' 
+    const {name, description = '', homepage, thumbnail, wiki} = char;
+        const viewDescription = description === '' ? 'There is no description for this character' 
             : description.length > 170 ? description.slice(0, 170) + '...' : null;
         
         const imageNotFound = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg';

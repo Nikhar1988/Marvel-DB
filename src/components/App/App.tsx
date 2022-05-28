@@ -1,71 +1,30 @@
-import { FC, useState} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { FC} from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import AppHeader from '../AppHeader/AppHeader';
-import CharInfo from '../CharInfo/CharInfo';
-import RandomChar from '../RandomChar/RandomChar';
 import './App.scss';
-import CharList from '../CharList/CharList' 
-
-import decoration from '../../resources/img/vision.png';
  
-import ErrorBoundry from '../ErrorBoumdry/ErrorBoumdry';
-import AppBanner from '../AppBanner/AppBanner';
-import ComicsList from '../ComicsList/ComicsList';
+import MainPage from '../../pages/MainPage';
+import ComicsPage from '../../pages/ComicsPage';
+import Page404 from '../../pages/404';
+import SingleComicPage from '../../pages/SingleComicPage';
 
 const App:FC =() => {
-   
-  
-  const [idChar, setIdChar] = useState<number >(0)
-  
-  const updateIdCard = (id:number) => {
-    setIdChar(id)
-  }
 
-    
     return (
        <Router>
             <div className="app">
                 <AppHeader/>
                 <main>
-                   <Switch>
-                    <Route exact path="/">
-                            <ErrorBoundry>
-                                <RandomChar/>
-                            </ErrorBoundry>
-                            
-                            <div className="char__content">
-                                <ErrorBoundry>
-                                    <CharList 
-                                        updateIdCard = {updateIdCard}
-                                        idChar={idChar}    
-                                    />
-
-                                </ErrorBoundry>
-                                
-                                <ErrorBoundry>
-                                    <CharInfo charId={idChar}/>
-                                </ErrorBoundry>
-                                
-                            </div>
-                            <img className="bg-decoration" src={decoration} alt="vision"/>
-                        </Route>
-                        <Route exact path="/comics">
-                            <AppBanner/>
-                                <ComicsList 
-                                    updateIdCard = {updateIdCard}
-                                    idComic={idChar} 
-                                />
-                        </Route>
-                   </Switch>
+                   <Routes>
+                        <Route path="/" element={  <MainPage/>}/>
+                        <Route path="/comics" element={<ComicsPage/>}/>
+                        <Route path="/comics/:comicId" element={<SingleComicPage/>}/>    
+                        <Route path="*" element={<Page404/>}/>
+                   </Routes>
                 </main>
             </div>
        </Router>
-        )
-  
-    
-    
-
- 
+    ) 
 }
 
 

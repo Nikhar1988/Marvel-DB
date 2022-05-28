@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './AppHeader.scss';
 
 
@@ -12,9 +12,9 @@ const AppHeader = () => {
             </h1>
             <nav className="app__menu">
                 <ul>
-                    <li><Link to="/">Characters</Link></li>
+                    <li><NavLink end to="/">Characters</NavLink></li>
                     /
-                    <li><Link to="/comics">Comics</Link></li>
+                    <li><NavLink to="/comics">Comics</NavLink></li>
                 </ul>
             </nav>
         </header>

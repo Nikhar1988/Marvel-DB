@@ -4,11 +4,11 @@ import Button from '../Button/Button';
 import ComicItem from '../ComicItem/ComicItem';
 import Error from '../Error/Error';
 import Spinner from '../Spinner/Spinner';
-import { Comic, ComicListProps } from './ComicsList.props';
+import { Comic,  } from './ComicsList.props';
 import './ComicsList.scss';
  
 
-const ComicsList:FC<ComicListProps> = ({idComic, updateIdCard}) => {
+const ComicsList:FC = () => {
     
     const {error, loading, getAllComics}= useMarvelService();
     
@@ -51,11 +51,10 @@ const ComicsList:FC<ComicListProps> = ({idComic, updateIdCard}) => {
          
           return <ComicItem
               src={thumbnail} 
-              title={title} selected={idComic === id}
+              title={title}  
               price={price}
-              key={id+i                 } 
-              comicId={id}      
-              onFocus={()=> updateIdCard(id)} 
+              key={id+i} 
+              comicId={id}       
               liRef = {el => liElement = el}
               /> 
        }) 
