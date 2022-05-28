@@ -1,10 +1,12 @@
 import cn from 'classnames';
 import {FC } from 'react';
 
+import CSS from 'csstype';
+
 import { CharItemProps } from './CharItem.props';
 
 import './CharItem.scss';
-import CSS from 'csstype';
+
 
 const CharItem:FC<CharItemProps> = ({name, src, selected, charId, imageNotFound, liRef, ...props}) => {
   let imgStyle: CSS.Properties = {'objectFit' : 'cover'};
