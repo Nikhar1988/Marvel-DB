@@ -3,14 +3,14 @@
 [DEMO](https://chusovitin-marvel-app.herokuapp.com/)
 
 ## Технологии ##
-
+-TypeScript
 - React
 - (react-create-app, react-helmet, react-router-dom, react-transition-group)
 - Formik
 - Bootstrap
 - AJAX, используя Fetch
 - Валидация(Yup)
-- Деплой (<https://heroku.com/>)
+
 
 ---
 
